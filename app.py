@@ -4,26 +4,27 @@ import openai
 app = Flask(__name__)
 
 # Set up the OpenAI API Key
-openai.api_key = "proj_o6NF0xKQALraFXSjqnBKyU4a"
+openai.api_key = "sk-InN9XJHbFcucdJhJA6QfBMl6Irn25UCvT8PWiuTodlT3BlbkFJKugXtXrCllL9l5vZQV7LYAVounloJnRNYwQidwdZwA"  # Replace with your actual OpenAI API key
 
 # Function to send the prompt to OpenAI and get the travel itinerary
 def get_chatgpt_response(place, duration, activities, extra_info):
-    prompt = f"""
-    I want to plan a trip to {place} for {duration}. 
-    Here are some activities I want to do: {activities}.
-    Additional information: {extra_info if extra_info else "No additional info."}
-
-    Can you provide a detailed travel itinerary, including suggestions for things to do and see based on my preferences?
-    """
-
-    response = openai.Completion.create(
-        engine="text-davinci-003",  # Choose the appropriate GPT model (text-davinci-003 or GPT-4)
-        prompt=prompt,
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # Choose the appropriate GPT model
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that provides travel itineraries."},
+            {"role": "user", "content": f"""
+            I want to plan a trip to {place} for {duration}. 
+            Here are some activities I want to do: {activities}.
+            Additional information: {extra_info if extra_info else "No additional info."}
+            
+            Can you provide a detailed travel itinerary, including suggestions for things to do and see based on my preferences?
+            """}
+        ],
         max_tokens=500,  # Adjust based on how much information you want in the response
         temperature=0.7  # Adjust for creativity level
     )
 
-    return response.choices[0].text.strip()
+    return response.choices[0].message['content'].strip()
 
 # Route for the home page where the form is located
 @app.route('/')
