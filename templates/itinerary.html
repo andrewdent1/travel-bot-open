@@ -12,6 +12,16 @@
     <div class="container">
         <h1>Your Travel Itinerary</h1>
         <pre>{{ itinerary }}</pre>
+        <h2>Travel Inspiration from Pinterest</h2>
+        <div id="pinterest-posts">
+            {% for post in pinterest_posts %}
+            <div class="pinterest-post">
+                <a href="{{ post.link }}" target="_blank">
+                    <img src="{{ post.image_url }}" alt="Pinterest Post">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
         <a href="/">Go Back</a>
     </div>
 </body>
