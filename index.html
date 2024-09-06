@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Inspiration Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Travel Inspiration Bot</h1>
+
+        <label for="place">Where do you want to go?</label>
+        <input type="text" id="place" name="place" required>
+
+        <label for="duration">How long do you want to stay?</label>
+        <input type="text" id="duration" name="duration" required>
+
+        <label for="activities">What activities do you like to do?</label>
+        <input type="text" id="activities" name="activities" required>
+
+        <label for="extra">Anything else?</label>
+        <input type="text" id="extra" name="extra">
+
+        <button id="generateButton">Generate Itinerary</button>
+
+        <div id="itinerary-output" class="itinerary-output"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
